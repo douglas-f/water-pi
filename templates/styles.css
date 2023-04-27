@@ -1,0 +1,35 @@
+body {
+    background-color: #F5F5F5;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333;
+    padding: 0;
+    margin: 0;
+  }
+  
+  button {
+    background-color: #007AFF;
+    border: none;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  #status {
+    font-weight: bold;
+    color: #007AFF;
+    text-transform: uppercase;
+  }
+  
