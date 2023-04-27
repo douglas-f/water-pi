@@ -42,6 +42,6 @@ def toggle():
 
 if __name__ == '__main__':
     try:
-        app.run(debug=True, host='10.250.1.205', port=5000)
+        app.run(debug=False, host='10.250.1.205', port=5000)
     except Exception as e:
         print('Error:', e)
