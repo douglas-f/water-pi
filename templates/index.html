@@ -1,30 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Water Valve Controller</title>
-    <link rel="stylesheet" href="styles.css">
+	<title>Water Valve Controller</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button onclick="toggleValve()">Toggle Water Valve</button>
-    <p>Status: <span id="status">Unknown</span></p>
+	<div class="container">
+		<h1>Water Valve Controller</h1>
+		<p>Toggle the water valve with the click of a button</p>
+		<button onclick="toggleValve()">Toggle Valve</button>
+		<p>Status: <span class="status" id="status">Unknown</span></p>
+	</div>
 
-    <script>
-        async function updateStatus() {
-            const response = await fetch('/status');
-            const data = await response.json();
-            const statusElement = document.getElementById('status');
-            statusElement.textContent = data.status ? 'Open' : 'Closed';
-        }
+	<script>
+		async function updateStatus() {
+			try {
+				const response = await fetch('/status');
+				const data = await response.json();
+				const statusElement = document.getElementById('status');
+				statusElement.textContent = data.status ? 'Open' : 'Closed';
+			} catch (error) {
+				console.log(error);
+			}
+		}
 
-        async function toggleValve() {
-            await fetch('/toggle');
-            updateStatus();
-        }
+		async function toggleValve() {
+			try {
+				await fetch('/toggle');
+				updateStatus();
+			} catch (error) {
+				console.log(error);
+			}
+		}
 
-        updateStatus();
-        setInterval(updateStatus, 5000);  // Update the status every 5 seconds
-    </script>
+		updateStatus();
+		setInterval(updateStatus, 5000); // Update the status every 5 seconds
+	</script>
 </body>
 </html>
