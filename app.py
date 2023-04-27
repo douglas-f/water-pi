@@ -2,13 +2,16 @@ from flask import Flask, render_template, jsonify
 import RPi.GPIO as GPIO
 import threading
 
+app= Flask(__name__)
+
 valve_pin = 37
 
-GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(valve_pin, GPIO.OUT)
+GPIO.output(valve_pin, 0)
 
-app = Flask(__name__)
+
 
 def close_valve_after_delay(delay):
     threading.Timer(delay, lambda: GPIO.output(valve_pin, False)).start()
@@ -39,6 +42,6 @@ def toggle():
 
 if __name__ == '__main__':
     try:
-        app.run(host='10.250.1.205', port=5000)
+        app.run(debug=True, host='10.250.1.205', port=5000)
     except Exception as e:
         print('Error:', e)
