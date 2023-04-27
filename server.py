@@ -29,4 +29,4 @@ def led1off():
 
 if __name__=="__main__":
     print("Start")
-    app.run(debug=True, host='10.250.1.206')
+    app.run(debug=True, host='10.250.1.205')
