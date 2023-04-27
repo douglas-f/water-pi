@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Valve Controller</title>
+    <style>
+        /* Add Apple design-inspired styles here */
+    </style>
+</head>
+<body>
+    <button onclick="toggleValve()">Toggle Water Valve</button>
+    <p>Status: <span id="status">Unknown</span></p>
+
+    <script>
+        async function updateStatus() {
+            const response = await fetch('/status');
+            const data = await response.json();
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = data.status ? 'Open' : 'Closed';
+        }
+
+        async function toggleValve() {
+            await fetch('/toggle');
+            updateStatus();
+        }
+
+        updateStatus();
+        setInterval(updateStatus, 5000);  // Update the status every 5 seconds
+    </script>
+</body>
+</html>
